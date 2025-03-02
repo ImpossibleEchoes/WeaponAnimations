@@ -1,4 +1,4 @@
-﻿// Yulian Shvab 2025
+// Yulian Shvab 2025
 // Released into the public domain; no copyright claimed
 #include "weapAnims.h"
 
@@ -112,7 +112,6 @@ struct CDynamicEntity : CEntity {
  * @param layerIndex The index of the animation layer.
  * @param speed The animation playback speed.
  *
- * @return god
  */
 	void playAnim(int animId, DWORD hash, float _unk, char bLoop, char bDontClearAnimLayerAfterPlaying, int layerIndex, float speed) {
 
