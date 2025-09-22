@@ -3,6 +3,8 @@
 #pragma once
 
 struct CPed;
+struct CTaskSimpleReloadGun;
+struct CTaskSimpleFireGun;
 
 /**
  * @brief Triggers the fire animation for the weapon currently held by the specified ped.
@@ -20,7 +22,7 @@ void processFire(CPed* ped);
  *
  * @return void This function does not return any value.
  */
-void processReload(CPed* ped);
+void processReload(CTaskSimpleReloadGun* pTask, CPed* ped);
 
 /**
  * @brief Aborts the firing animation of a weapon held by a ped.
@@ -46,4 +48,19 @@ void processFireAbort(CPed* ped);
  *
  * @return void
  */
-void processReloadAbort(CPed* ped);
+void processReloadAbort(CTaskSimpleReloadGun* pTask, CPed* ped);
+
+struct CTaskSimpleReloadGun;
+
+void postAbortProcessShotgunReload(CTaskSimpleReloadGun* pTask, CPed* pPed);
+
+void processReloadZeroState(CTaskSimpleReloadGun* pTask, CPed* pPed);
+
+void preProcessShotgunReload(CTaskSimpleReloadGun* pTask, CPed* pPed);
+void postProcessShotgunReload(CTaskSimpleReloadGun* pTask, CPed* pPed);
+
+void preProcessFire(CTaskSimpleFireGun* pTask, CPed* pPed);
+void postProcessFire(CTaskSimpleFireGun* pTask, CPed* pPed);
+void postProcessFire2(CPed* pPed);
+
+void processWeapIk(CPed* pPed);

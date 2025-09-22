@@ -3,10 +3,12 @@
 #pragma once
 #include <Windows.h>
 
+#define STATIC_ASSERT_EXPR(expr) static_assert(expr, "Failed: " STR(expr))
+
 // forward declarations 
 struct CBaseModelInfo;
 struct CWeaponInfo;
-struct CAnimDescriptor;
+struct CAnimAssociations__AnimData;
 
 /**
  * Addresses of functions and memory objects from the game
@@ -14,7 +16,7 @@ struct CAnimDescriptor;
  */
 extern CBaseModelInfo** g_ppMdlInfos;
 extern CWeaponInfo* g_pWeapInfo;
-extern CAnimDescriptor** g_pAnimAssociations; // ms_aAnimAssociations
+extern CAnimAssociations__AnimData** g_pAnimAssociations; // ms_aAnimAssociations
 extern size_t g_getAnimByIdAndHash_addr;
 extern size_t g_checkCoords_addr;
 extern size_t g_allocCoords_addr;
@@ -22,6 +24,18 @@ extern size_t g_allocAnimBlender_addr;
 extern size_t g_allocNode_addr;
 extern size_t g_blendAnim_addr;
 extern size_t g_CAnimBlender__findAnimInBlend_addr;
+
+extern size_t g_CPedWeapons__getWeaponData;
+extern size_t g_CPBuffer__get;
+extern size_t g_CPBuffer__set;
+extern size_t g_CAnimPlayer__getAnimEventTime;
+extern size_t g_getWeaponByType;
+extern size_t g_CPed__getPad2;
+extern size_t g_CVehicle__isDriver;
+extern size_t g_CIkManager__setHandPos;
+extern size_t g_CDynamicEntity__getSkeletonData;
+extern size_t g_CDynamicEntity__getBoneMatrixInWorldSpace;
+extern size_t g_CAnimBlender__getPlayerByAnimId;
 
 
 /**
@@ -51,6 +65,7 @@ DWORD writeDWORD(size_t addr, DWORD val);
  * be an absolute address.
  */
 size_t setFnAddrInCallOpcode(size_t callPos, size_t pfn);
+size_t getFnAddrInCallOpcode(size_t callPos);
 
 /**
  * @brief Retrieves the address of a class member function.
@@ -60,3 +75,5 @@ size_t setFnAddrInCallOpcode(size_t callPos, size_t pfn);
  * @return The address of the class member function.
  */
 template<typename T> size_t getThisCallFuncAddres(T func) { return (size_t)(void*&)func; }
+
+void makeNop(size_t addr, size_t size);
