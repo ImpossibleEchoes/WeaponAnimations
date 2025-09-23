@@ -895,8 +895,13 @@ void runPatch() {
 size_t g_hookAddr_Patch;
 size_t g_hookAddr_PatchOrigcall;
 
+bool g_bPatched = false;
+
 int patchGame() {
-	runPatch();
+	if (!g_bPatched) {
+		runPatch();
+		g_bPatched = true;
+	}
 
 
 	return ((int(*)())(g_hookAddr_PatchOrigcall))();
