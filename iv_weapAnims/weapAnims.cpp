@@ -614,6 +614,9 @@ void preProcessShotgunReload(CTaskSimpleReloadGun* pTask, CPed* pPed) {
 				auto currAmmoInClip = pWeapData->getNumAmmoInClip();
 				auto currNumAmmo = pWeapData->getTotalNumAmmo();
 
+				if(!pWeapData)
+					return;
+
 				if (currAmmoInClip != ammoInClip || currNumAmmo != numAmmo) {
 					pWeapData->setNumAmmoInClip(ammoInClip);
 					pWeapData->setTotalNumAmmo(numAmmo);
@@ -1039,3 +1042,4 @@ void processWeapIk(CPed* pPed) {
 }
 
 #endif
+
